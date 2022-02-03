@@ -55,7 +55,7 @@ pipeline {
       stage('scan') {
           environment {
             // Previously defined in the Jenkins "Global Tool Configuration"
-            scannerHome = tool 'mysonar-scanner'
+            scannerHome = tool 'sonar-scanner'
           }
           steps {
             // "sonarqube" is the server configured in "Configure System"
