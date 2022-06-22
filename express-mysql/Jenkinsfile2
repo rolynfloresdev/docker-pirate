@@ -52,7 +52,7 @@ pipeline {
           sh "cd ${PROJECT_ROOT}; npm run coverage"
         }
       }
-      stage('scan') {
+      stage('scan-new') {
           environment {
             // Previously defined in the Jenkins "Global Tool Configuration"
             scannerHome = tool 'sonar-scanner'
@@ -72,7 +72,7 @@ pipeline {
                           -Dsonar.tests=./${PROJECT_ROOT}/test \
                           -Dsonar.javascript.lcov.reportPaths=./${PROJECT_ROOT}/coverage/lcov.info"
             }
-            timeout(time: 3, unit: 'MINUTES') {
+            timeout(time: 6, unit: 'MINUTES') {
               // In case of SonarQube failure or direct timeout exceed, stop Pipeline
               waitForQualityGate abortPipeline: qualityGateValidation(waitForQualityGate())
             }
